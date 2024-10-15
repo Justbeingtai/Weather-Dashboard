@@ -1,60 +1,88 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+/* Reset some default styles */
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Flexbox container for left and right sections */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Flex container for sections */
 .container {
     display: flex;
     max-width: 1200px;
-    margin: 0 auto;
-    gap: 20px;
+    width: 100%;
+    gap: 30px;
 }
 
-/* Left section for search form and search history */
+/* Left Section: Search Box and History */
 .left-section {
     flex: 1;
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.left-section h2, .left-section h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+.left-section h2 {
+    margin-bottom: 15px;
+    color: #007bff;
 }
 
-/* Input and button styles */
-input#city-input {
-    width: 90%;
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    flex: 1;
     padding: 10px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
-button#search-btn {
+.search-button {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Search history styles */
+.search-button:hover {
+    background-color: #0056b3;
+}
+
 #search-history {
     list-style: none;
-    padding-left: 0;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
 }
 
 #search-history li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
     cursor: pointer;
-    padding: 8px 0;
-    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s;
 }
 
-/* Right section for weather display */
+#search-history li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Right Section: Weather Cards */
 .right-section {
     flex: 2;
     display: flex;
@@ -62,35 +90,35 @@ button#search-btn {
     gap: 20px;
 }
 
-/* Current weather card */
 .weather-card {
     background-color: #007bff;
     color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.weather-card h2, .weather-card p {
-    margin: 5px 0;
-}
-
-#current-date {
-    font-size: 14px;
+.weather-card h2 {
     margin-bottom: 10px;
+    font-size: 24px;
 }
 
 #weather-icon {
-    width: 100px;
-    margin-bottom: 10px;
+    width: 80px;
+    margin: 15px 0;
 }
 
-/* 5 Day Forecast section */
+.weather-details p {
+    margin: 5px 0;
+}
+
+/* 5 Day Forecast Section */
 #forecast {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .forecast-container {
@@ -101,14 +129,29 @@ button#search-btn {
 
 .forecast-item {
     flex: 1;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background-color: #f0f9ff;
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.forecast-item:hover {
+    transform: scale(1.05);
 }
 
 .forecast-item img {
-    display: block;
-    margin: 0 auto;
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.forecast-item h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.forecast-item p {
+    font-size: 14px;
+    margin-bottom: 5px;
 }
