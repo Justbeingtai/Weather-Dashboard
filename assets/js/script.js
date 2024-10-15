@@ -1,5 +1,5 @@
 // Define the API key for OpenWeatherMap
-const API_KEY = '281f84e559b86b489a067979597037f7'; 
+const API_KEY = 'ab91e86caf2c6fc4de42bb6ab65ed872'; 
 
 // Get references to necessary DOM elements
 const searchBtn = document.getElementById('search-btn');
@@ -12,7 +12,12 @@ const searchHistory = document.getElementById('search-history');
 function getCoordinates(cityName) {
     const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
     return fetch(geoUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch city coordinates');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.length === 0) {
                 throw new Error('City not found');
@@ -23,8 +28,8 @@ function getCoordinates(cityName) {
             };
         })
         .catch(error => {
-            console.error(error);
-            alert('Error: Could not find city');
+            console.error('Error fetching coordinates:', error);
+            alert('Error: Could not find city.');
         });
 }
 
@@ -32,7 +37,11 @@ function getCoordinates(cityName) {
 function getWeather(lat, lon) {
     const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
     return fetch(weatherUrl)
-        .then(response => response.json());
+        .then(response => response.json())
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            alert('Error: Could not fetch weather data.');
+        });
 }
 
 // Display the current weather data
